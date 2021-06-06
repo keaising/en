@@ -7,5 +7,46 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Sun, 06 Jun 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://en.shuxiao.wang/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CLI App in C# 其三</title>
+      <link>https://en.shuxiao.wang/posts/cli-app-in-csharp3/</link>
+      <pubDate>Tue, 14 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://en.shuxiao.wang/posts/cli-app-in-csharp3/</guid>
+      <description>这是 CLI App in C# 系列的第三篇，本篇主要介绍gen的打包和发布。
+.Net Core控制台应用的打包方法主要是两类：
+ 可执行文件，对应直接运行，Windows平台体现为exe文件 nuget包，对应dotnet core global tool的部署方法  可执行文件  打包成exe的方法完全兼容Windows/Linux/macOS三大主流平台，所以只是简单以Windows为例进行演示，其他平台只需要修改编译和打包参数即可，在任何平台打包和编译都是可以的
+ 最终目标是在当前环境下打包一个可以在64位Windows10环境下执行的exe文件，希望能不依赖dotnet core SDK，所以加上自包含的特性，并且去掉debug信息，指定打包类型为Release
+调整项目配置 打包之前，需要调整项目配置
+1 2 3 4 5 6 7 8 9 10 11 12 13 14  &amp;lt;Project Sdk=&amp;#34;Microsoft.NET.Sdk&amp;#34;&amp;gt; &amp;lt;PropertyGroup&amp;gt; &amp;lt;AssemblyName&amp;gt;gen&amp;lt;/AssemblyName&amp;gt; &amp;lt;OutputType&amp;gt;Exe&amp;lt;/OutputType&amp;gt;  &amp;lt;TargetFramework&amp;gt;netcoreapp2.1&amp;lt;/TargetFramework&amp;gt; &amp;lt;Version&amp;gt;1.0.0&amp;lt;/Version&amp;gt;  &amp;lt;/PropertyGroup&amp;gt; &amp;lt;ItemGroup&amp;gt; &amp;lt;PackageReference Include=&amp;#34;McMaster.Extensions.CommandLineUtils&amp;#34; Version=&amp;#34;2.3.4&amp;#34; /&amp;gt; &amp;lt;/ItemGroup&amp;gt; &amp;lt;/Project&amp;gt;   在没有其他配置的情况下，最后生成的exe的名字跟程序集名字一样，输出类型决定了是打包成exe还是nuget包
+发布应用 使用以下脚本发布应用
+dotnet publish -r win10-x64 --self-contained true -c Release 执行以上命令后，可以在./bin/Release/netcoreapp2.1/win10-64/publish目录下找到生成的所有exe和dll文件，此时可以直接运行exe文件使用演示应用</description>
+    </item>
+    
+    <item>
+      <title>CLI App in C# 其二</title>
+      <link>https://en.shuxiao.wang/posts/cli-app-in-csharp2/</link>
+      <pubDate>Sun, 12 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://en.shuxiao.wang/posts/cli-app-in-csharp2/</guid>
+      <description>这是 CLI App in C# 系列的第二篇，本篇主要介绍gen的开发过程。教程里的所有代码参见keaising/gen
+新建项目  在合适的地方使用dotnet new console -n gen新建一个名字是gen的控制台项目 通过命令行工具cd到项目目录下 输入dotnet run运行该项目，应当能看到Hello World!  如下图所示：
+添加引用 在项目目录下输入如下命令，添加对CommandLineUtils项目的引用
+dotnet add package McMaster.Extensions.CommandLineUtils 这一步是通过命令行的方式引入nuget包，也可以在Visual Studio里进行nuget包管理，效果完全一样
+添加完成之后，项目文件gen.csproj可见ItemGroup中已经有了对CommandLineUtils的引用
+&amp;lt;Project Sdk=&amp;#34;Microsoft.NET.Sdk&amp;#34;&amp;gt; &amp;lt;PropertyGroup&amp;gt; &amp;lt;OutputType&amp;gt;Exe&amp;lt;/OutputType&amp;gt; &amp;lt;TargetFramework&amp;gt;netcoreapp2.2&amp;lt;/TargetFramework&amp;gt; &amp;lt;/PropertyGroup&amp;gt; &amp;lt;ItemGroup&amp;gt; &amp;lt;PackageReference Include=&amp;#34;McMaster.Extensions.CommandLineUtils&amp;#34; Version=&amp;#34;2.3.4&amp;#34; /&amp;gt; &amp;lt;/ItemGroup&amp;gt; &amp;lt;/Project&amp;gt; 改造Programs文件 此时应用还只能输出Hello World!，根据CommandLineUtils文档稍做改造，实现输出应用信息的功能。修改代码如下：
+using System; using McMaster.Extensions.CommandLineUtils; namespace gen { [Command(Name = &amp;#34;gen&amp;#34;, Description = &amp;#34;A simple console app.&amp;#34;)] class Program { public static int Main(string[] args) =&amp;gt; CommandLineApplication.Execute&amp;lt;Program&amp;gt;(args); private int OnExecute(CommandLineApplication app, IConsole console) { app.</description>
+    </item>
+    
+    <item>
+      <title>CLI App in C#: 1</title>
+      <link>https://en.shuxiao.wang/posts/cli-app-in-csharp1/</link>
+      <pubDate>Sat, 11 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://en.shuxiao.wang/posts/cli-app-in-csharp1/</guid>
+      <description>This is the first post of CLI App in C# series. This series aims to illustrate every detail of how to write a command tool in C#, based on .Net Core. I will explain most content from outlining an app, choosing a proper platform, packaging code into a single binary execute file to automating build in CICD.
+ First, functions that will be included in demo App, technologies will be used and why use them.</description>
+    </item>
+    
   </channel>
 </rss>

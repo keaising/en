@@ -3,12 +3,33 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://en.shuxiao.wang/posts/</loc>
+    <lastmod>2019-05-14T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://en.shuxiao.wang/</loc>
     <lastmod>2021-06-06T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://en.shuxiao.wang/categories/</loc>
+    <lastmod>2019-05-14T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://en.shuxiao.wang/posts/cli-app-in-csharp3/</loc>
+    <lastmod>2019-05-14T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://en.shuxiao.wang/tags/cli-in-csharp/</loc>
+    <lastmod>2019-05-14T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://en.shuxiao.wang/tags/dotnet-core/</loc>
+    <lastmod>2019-05-14T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://en.shuxiao.wang/categories/programming/</loc>
+    <lastmod>2019-05-14T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://en.shuxiao.wang/tags/</loc>
+    <lastmod>2019-05-14T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://en.shuxiao.wang/posts/cli-app-in-csharp2/</loc>
+    <lastmod>2019-05-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://en.shuxiao.wang/posts/cli-app-in-csharp1/</loc>
+    <lastmod>2019-05-11T00:00:00+00:00</lastmod>
   </url>
 </urlset>

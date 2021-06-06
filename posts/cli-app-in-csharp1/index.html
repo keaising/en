@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="zh-Hans" class="han-la">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CLI App in C#: 1 - Taiga Wang</title>
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/syntax.css">
+    <link rel="stylesheet" href="/css/kitto.css">
+    <script src="/js/anchor.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="/js/text-autospace.js"></script>
+</head>
+
+<body>
+    <div class="content width">
+        <div class="top-header">
+  <a class="site-title" href="https://en.shuxiao.wang">
+    Taiga Wang
+  </a>
+
+  
+  
+  <div class="nav-body">
+    
+    
+    <a class="nav-item " href="/posts/">
+      
+      <span>Posts</span>
+    </a>
+    
+    
+  </div>
+  
+</div>
+
+        <div>
+            
+
+
+<div class="Subhead">
+    <div class="Subhead-heading">
+        <h1>CLI App in C#: 1</h1>
+    </div>
+</div>
+
+
+
+
+<article>
+    
+    <div class="true-content">
+        <p>This is the first post of CLI App in C# series. This series aims to illustrate every detail of how to write a command tool in C#, based on .Net Core. I will explain most content from outlining an app, choosing a proper platform, packaging code into a single binary execute file to automating build in CICD.</p>
+<ul>
+<li>First, functions that will be included in demo App, technologies will be used and why use them.</li>
+<li>Second, most code in demo App.</li>
+<li>Last, packaging, how to build a final binary suitable for delivery.</li>
+</ul>
+<p>So, let&rsquo;s begin.</p>
+<h2 id="introduction-of-demo-app">Introduction of demo App</h2>
+<p>If you use <code>git</code> as your daily version control tool, you will be familiar with the pattern of <code>Command SubCommand Option</code>, for example <code>git push origin master</code> / <code>git clone https://github.com/torvalds/linux.git</code>, we will create a demo App follows this pattern.</p>
+<p>The primary function of the demo App will be to generate various numbers. It can generate different numbers depends on different subcommands and options. It is named <code>gen</code> and all the functions are included below.</p>
+<table>
+<thead>
+<tr>
+<th>command</th>
+<th>function</th>
+<th>result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>gen mobile</code></td>
+<td>generate a random Chinese phone number</td>
+<td>15810885678</td>
+</tr>
+<tr>
+<td><code>gen id</code></td>
+<td>generate a 18 bit Chinese ID number</td>
+<td>210765199707122345</td>
+</tr>
+<tr>
+<td><code>gen id -l 110</code></td>
+<td>generate a Chinese ID number has a prefix of <code>110</code></td>
+<td>110765199707122345</td>
+</tr>
+<tr>
+<td><code>gen id -s</code></td>
+<td>generate a 15 bit Chinese ID number</td>
+<td>456719970712234</td>
+</tr>
+<tr>
+<td><code>gen -v</code></td>
+<td>print version info</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="introduction-of-jargon">Introduction of Jargon</h2>
+<p>In the full command of <code>gen id -l 110</code>, there are some terms we use in command tool.</p>
+<table>
+<thead>
+<tr>
+<th>command</th>
+<th>Jargon</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>gen</code></td>
+<td>Command</td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td>SubCommand</td>
+</tr>
+<tr>
+<td><code>-l</code></td>
+<td>Option</td>
+</tr>
+<tr>
+<td><code>'110'</code></td>
+<td>Verbs</td>
+</tr>
+</tbody>
+</table>
+<h2 id="technology-selection">Technology Selection</h2>
+<h4 id="framework">Framework</h4>
+<p>We use dotnet core 2.1，which is the most recent LTS version of the .Net Core platform. It allows us to run our tool in not only Windows, but also macOS and Linux. We can use C# and develop very fast.</p>
+<h4 id="parsing-command-line-arguments">Parsing command line arguments</h4>
+<p>We will use <a href="https://github.com/natemcmaster/CommandLineUtils"><code>CommandLineUtils</code></a> to parse command line arguments. It is complicated and error-prone for us to use raw <code>string[] args</code> in <code>main function</code> to parse subcommands and options, so we choose a proper library to do dirty work for us.</p>
+<p><a href="https://github.com/natemcmaster/CommandLineUtils"><code>CommandLineUtils</code></a>的前身是ASP.NET团队在开发dotnet core的过程中，为开发dotnet cli而开发的扩展库，后来ASP.NET团队觉得这个功能跟ASP.NET的开发关系不大，于是转入<a href="https://github.com/aspnet/Extensions/issues/257#issuecomment-322623120">不活跃状态</a>，后续被ASP.NET团队的一个开发小哥以<a href="https://github.com/aspnet/Extensions/issues/257#issuecomment-326726754">私人身份fork并继续维护</a>，于是就有了现在用的这个库。</p>
+<h4 id="packaging">Packaging</h4>
+<p>dotnet core提供打包工具<code>build</code>和<code>pack</code>，分别用于打包普通控制台应用和nuget包（用于dotnet core global tool的分发）。</p>
+<p>dotnet core的打包工具的打包结果会是一大堆exe、dll和相关配置文件，为了最终获得一个单独的exe文件，使用<a href="https://github.com/dgiagio/warp">wrap</a>库来将所有的文件打包成一个exe，方便部署和使用。</p>
+<p><strong>つづく</strong></p>
+
+    </div>
+
+    <div class="page-info">
+        <div>
+            
+
+<div>
+    
+    <a href='/categories/programming' class="categories-url">
+        <span class="categories">programming</span>
+    </a>
+    
+</div>
+
+
+
+<div>
+    <a href='/tags/cli-in-csharp' class="tags-url">
+        <span class="tags">cli in csharp</span>
+    </a>
+</div>
+
+<div>
+    <a href='/tags/dotnet-core' class="tags-url">
+        <span class="tags">dotnet core</span>
+    </a>
+</div>
+
+
+
+        </div>
+        
+            
+                <div class="publish-date">
+                    <span
+                        title="Lastmod: 2019-05-11. Published at: 2019-05-11.">
+                        11 May 2019
+                    </span>
+                </div>
+            
+        
+    </div>
+</article>
+
+
+
+
+
+        </div>
+        <div id="footer" class="pt-2 pb-3 bg-white text-center">
+            
+
+  <span class="text-small text-gray">
+    
+
+    Powered by the
+    <a href="https://github.com/keaising/kitto" class="link-gray-dark">Kitto</a> theme for
+    <a href="https://gohugo.io" class="link-gray-dark">Hugo</a>.
+  </span>
+
+
+        </div>
+    </div>
+
+    
+    <script>
+        anchors.add();
+    </script>
+    <script>
+        anchors.options = {
+            placement: 'left',
+        };
+        anchors.add();
+        anchors.add(".tag-title-left");
+    </script>
+    <script src="/js/mathjax.js"></script>
+</body>
+
+</html>
