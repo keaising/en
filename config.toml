@@ -1,0 +1,12 @@
+baseURL = "https://en.shuxiao.wang"
+title = "Taiga Wang"
+theme = "kitto"
+
+languageCode = "en"
+hasCJKLanguage = false
+pygmentsCodeFences = true
+disableFastRender = true
+pygmentsUseClasses = true
+
+# You can use favicon by addin them manually.
+useIcon = true
