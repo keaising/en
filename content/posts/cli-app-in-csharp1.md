@@ -47,14 +47,14 @@ We use dotnet core 2.1，which is the most recent LTS version of the .Net Core p
 
 #### Parsing command line arguments 
 
-We will use [`CommandLineUtils`](https://github.com/natemcmaster/CommandLineUtils) to parse command line arguments. It is complicated and error-prone for us to use raw `string[] args` in `main function` to parse subcommands and options, so we choose a proper library to do dirty work for us.
+We will use [CommandLineUtils](https://github.com/natemcmaster/CommandLineUtils) to parse command line arguments. It is complicated and error-prone for us to use raw `string[] args` in `main function` to parse subcommands and options, so we choose a proper library to do dirty work for us.
 
-[`CommandLineUtils`](https://github.com/natemcmaster/CommandLineUtils)的前身是ASP.NET团队在开发dotnet core的过程中，为开发dotnet cli而开发的扩展库，后来ASP.NET团队觉得这个功能跟ASP.NET的开发关系不大，于是转入[不活跃状态](https://github.com/aspnet/Extensions/issues/257#issuecomment-322623120)，后续被ASP.NET团队的一个开发小哥以[私人身份fork并继续维护](https://github.com/aspnet/Extensions/issues/257#issuecomment-326726754)，于是就有了现在用的这个库。
+[CommandLineUtils](https://github.com/natemcmaster/CommandLineUtils) forks from a library which is ASP.NET team developed for building dotnet cli applications. But years later the team thought it is out of their scope to develop such a library, so they [archived the library](https://github.com/aspnet/Extensions/issues/257#issuecomment-322623120). Fortunately, a developer from ASP.NET team has forked this repository in a private capacity, so we still have an actively developed and well-maintained library.
 
 #### Packaging
 
-dotnet core提供打包工具`build`和`pack`，分别用于打包普通控制台应用和nuget包（用于dotnet core global tool的分发）。
+The .Net Core's command tool `dotnet` provide two subcommands for packaging: `build` and `pack`, they are used in build normal command line tool and build NuGet package(We can use NuGet package for the delivery of .Net Core Global Tool).
 
-dotnet core的打包工具的打包结果会是一大堆exe、dll和相关配置文件，为了最终获得一个单独的exe文件，使用[wrap](https://github.com/dgiagio/warp)库来将所有的文件打包成一个exe，方便部署和使用。
+No matter which subcommands we use, we will get a bunch of .exe, .dll, and configuration files. We will use a tool named [wrap](https://github.com/dgiagio/warp), written in Rust, to build a final single .exe file from a bunch of files. It is more convenient for the user to deploy and use only one single file rather than one folder with various files.
 
 **つづく** 
