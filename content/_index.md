@@ -9,13 +9,19 @@ Hi, I'm Taiga, a software engineer with more than five years exprience, main in 
 
 ### Code
 
-| project                                                                  | description                                                                                                                                                                          |
-| --------                                                                 | -----------                                                                                                                                                                          |
-| [ auto-mouse-keyboard ](https://github.com/keaising/auto-mouse-keyboard) | Operating mouse and keyboard by naive configuration                                                                                                                                  |
-| [ rit ](https://github.com/keaising/rit)                                 | A git enhance tool in Rust                                                                                                                                                           |
-| [ gen ](https://github.com/keaising/gen)                                 | Sample code of [ tutorials ](/tags/cli-in-csharp/) about how to write a [.Net Core Global Tool](https://docs.microsoft.com/en-us/dotnet/core/tools/global-tools) |
-| [ dotfile ](https://github.com/keaising/dotfile)                         | My well organized dotfiles                                                                                                                                                           |
-| [ kitto ](https://github.com/keaising/kitto)                             | This site's hugo theme                                                                                                                                                               |
+| project                                                                  | description                                                                                   |
+| --------                                                                 | -----------                                                                                   |
+| [ auto-mouse-keyboard ](https://github.com/keaising/auto-mouse-keyboard) | Operating mouse and keyboard by naive configuration                                           |
+| [ rit ](https://github.com/keaising/rit)                                 | A git enhance tool in Rust                                                                    |
+| [ gen ](https://github.com/keaising/gen)                                 | Sample code of [ tutorials ](/tags/cli-in-csharp/) about how to write a .Net Core Global Tool |
+| [ dotfile ](https://github.com/keaising/dotfile)                         | My well organized dotfiles                                                                    |
+| [ kitto ](https://github.com/keaising/kitto)                             | This site's hugo theme                                                                        |
+
+### Presentations
+
+| date    | slide                                        | description                                                          |
+| ---     | ---                                          | ---                                                                  |
+| 2021.06 | [Git Notes](https://shuxiao.wang/share/git/) | About Git,  illustrate `merge` and `rebase` with many GIF animations |
 
 ### Else where
 
